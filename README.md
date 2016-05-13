@@ -1,5 +1,7 @@
 A really basic React/Redux single page app bootstrap, ready to go with Webpack
 
+The SPA dev server requires webpack-dev-server so do `npm install -g webpack-dev-server` first
+
 To start devving;
 
  - Clone this repo
