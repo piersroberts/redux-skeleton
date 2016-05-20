@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack",
     "clean": "rimraf www/{css,js}/*",
     "dev": "webpack-dev-server",
     "deploy": "scripts/deploy.sh",

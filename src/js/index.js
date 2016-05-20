@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import * as reducers from './reducers'
 
