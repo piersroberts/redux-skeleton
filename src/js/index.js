@@ -1,37 +1,33 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router'
 
+import * as reducers from './reducers'
 
-class Base extends React.Component {
-	render(){
-		return (
-			<div class="main">
-            	{this.props.children}
-            </div>
-        )
-	}
-}
+import App from './components/app'
+import Home from './components/home'
+import NoMatch from './components/nomatch'
 
-class Home extends React.Component {
-	render(){
-		return <span>It works!</span>
-	}
-}
+const store = createStore(
+  combineReducers({
+  	...reducers,
+    routing: routerReducer
+  })
+)
 
-class NoMatch extends React.Component {
-	render(){
-		return <h1>404</h1>
-	}
-}
+const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
-  (<Router history={browserHistory}>
-    <Route path="/" component={Base}>
-    	<IndexRoute component={Home} />
-    </Route>
-    <Route path="*" component={NoMatch}/>
-  </Router>),
- 	document.getElementById('app')
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home} />
+      </Route>
+      <Route path="*" component={NoMatch}/>
+    </Router>
+  </Provider>,
+  document.getElementById('app')
 );
