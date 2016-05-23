@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var postcss       = require('postcss');
+var autoprefixer = require('autoprefixer');
 
 const plugins = {
     production : [
@@ -23,7 +25,7 @@ module.exports = {
         loaders: [{
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract(
-                'css-loader?sourceMap!sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true' // loaders to preprocess CSS
+                'css-loader?sourceMap!sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true!postcss' // loaders to preprocess CSS
             )
         }, {
             test: /\.js?$/,
@@ -35,6 +37,7 @@ module.exports = {
             "optional": ["es7.classProperties"]
         }]
     },
+    postcss: [autoprefixer],
     devtool: 'source-map',
     devServer: {
         contentBase: './www',
