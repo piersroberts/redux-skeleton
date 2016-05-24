@@ -9,7 +9,7 @@ To start devving;
  - run `npm run-script dev`
  - visit `http://localhost:8088`
 
-If you want to build to the js and css 
+If you want to build the production ready minified js and css 
 
  - run  `npm run-script build`
 
